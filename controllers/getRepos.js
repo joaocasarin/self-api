@@ -1,8 +1,15 @@
 const axios = require('axios');
 
-module.exports = async (url) => {
+module.exports = async () => {
     try {
-        return await axios.get(url);
+        const repos = await axios.get(process.env.GIT_URL);
+
+        const allInfoJson = await Promise.all(
+            repos.data.map(repo => axios.get(`https://raw.githubusercontent.com/${repo['full_name']}/master/info.json`))
+        );
+        
+        const result = allInfoJson.map(element => element.data);
+        return result;
     }
     catch (e) {
         return e;
