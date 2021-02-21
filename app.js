@@ -12,12 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(function (req, res, next) {
     
-    // Website you wish to allow to connect
-    const allowedOrigins = ['http://localhost:4200', 'http://localhost:4201'];
-    const origin = req.headers.origin;
-    if(allowedOrigins.includes(origin)) {
-        res.setHeader('Access-Control-Allow-Origin', origin);
-    }
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');

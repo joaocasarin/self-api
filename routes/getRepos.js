@@ -1,23 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const getRepos = require('../controllers/getJson');
+const getRepos = require('../controllers/getRepos');
 
-module.exports = router.get('/getRepos', async (req, res) => {
+module.exports = router.get('/repos', async (req, res) => {
     try {
-        /* getRepos(process.env.GIT_URL).then(axios_res => {
-            let repos = [];
-            axios_res.data.forEach(element => {
-                repos.push({
-                    name: element['name'],
-                    desc: element['description'],
-                    url: element['html_url'],
-                    symbol: element['name'][0].toUpperCase()
-                });
-            });
-
-            res.send(repos);
-        }); */
-
         // Repos will now contain an array of repos, with each a 'url' property
         const repos = await getRepos(process.env.GIT_URL);
         // Final result will be created here
@@ -27,7 +13,7 @@ module.exports = router.get('/getRepos', async (req, res) => {
         );
         // For each element of results, I'll exchange it for only its data
         const result = allInfoJson.map(element => element.data)
-        
+        console.log('Repos requested.');
         res.send(result);
     }
     catch (e) {
