@@ -1,17 +1,23 @@
 {
   "name": "self-api",
+  "engines": {
+    "node": "14.15.4"
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "api": "nodemon app.js"
+    "api": "nodemon app.js",
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joaocasarin/self-api.git"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
