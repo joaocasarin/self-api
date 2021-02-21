@@ -6,7 +6,7 @@ module.exports = router.get('/repos', async (req, res) => {
     try {
         const result = await getRepos();
         console.log('Repositories requested.');
-        res.send(result);
+        res.status(200).send(result);
     }
     catch (e) {
         console.log(e);
