@@ -6,7 +6,7 @@ module.exports = class GitIntegration {
       const repos = await this.getGitReposByUser(process.env.USER);
       const allInfoJson = await this.allInfoJson(repos);
 
-      const result = allInfoJson.map((element) => element.data);
+      const result = allInfoJson.map((element) => element);
       return result;
     } catch (e) {
       return e;
@@ -21,9 +21,18 @@ module.exports = class GitIntegration {
 
   async allInfoJson(repos) {
     return await Promise.all(
-      repos.data.map((repo) => axios.get(
-        `https://raw.githubusercontent.com/${repo["full_name"]}/master/info.json`
-      )
+      repos.data.map(async (repo) => {
+        const getInfo = await axios.get(
+          `https://raw.githubusercontent.com/${repo["full_name"]}/master/info.json`
+        );
+
+        return {
+          name: getInfo.data['name'],
+          desc: getInfo.data['desc'],
+          logo: getInfo.data['logo'],
+          url: repo['html_url']
+        };
+      }
       )
     );
   }
