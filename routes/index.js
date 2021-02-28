@@ -1,10 +1,10 @@
-const getRepos = require('./getRepos');
+const getProjects = require('./getProjects');
 const defaultRoute = require('./default');
 
 module.exports = app => {
     /* /api/ */
     app.use('/', defaultRoute);
 
-    /* /api/getRepos */
-    app.use('/', getRepos);
+    /* /api/getProjects */
+    app.use('/', getProjects);
 };
