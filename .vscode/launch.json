@@ -19,8 +19,6 @@
             ],
             "env": {
                 "NODE_ENV": "development",
-                "GIT_URL" : "https://api.github.com/users",
-                "USER": "joaocasarin",
                 "PORT": "3000"
             },
             "console": "integratedTerminal",
